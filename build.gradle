@@ -1,0 +1,40 @@
+group 'interview-kata-java'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3+'
+    testCompile group: 'junit', name: 'junit-dep', version: '4.11+'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3+'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.9.+'
+}
+
+
+sourceSets {
+
+    main {
+        java {
+            srcDirs = ["src/main"]
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ["src/test/"]
+        }
+    }
+}
+
+
+task unit(type: Test, description: 'Runs the unit tests.', group: 'test') {
+    testClassesDir = sourceSets.test.output.classesDir
+    classpath = sourceSets.test.runtimeClasspath
+}
